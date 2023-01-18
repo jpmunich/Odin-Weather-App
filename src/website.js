@@ -1,24 +1,12 @@
 const content = document.getElementById("content");
 
 export const website = (() => {
-    function calcTime(offset) {
-
-        const d = new Date();
-    
-        const utc = d.getTime() + (d.getTimezoneOffset() * 60000);
-    
-        const nd = new Date(utc + (3600000*offset));
-    
-        return nd.toLocaleString();
-    
-    }
-
     const header = document.createElement("header");
     const weatherType = document.createElement("div");
     const weatherTypeText = document.createElement("h2")
     const cityName = document.createElement("div"); 
     const cityNameText = document.createElement("h4");
-    const date = document.createElement("div");
+    const highLow = document.createElement("div");
     const temp = document.createElement("div");
     const tempText = document.createElement("h1");
     const typeOfUnits = document.createElement("div");
@@ -58,11 +46,9 @@ export const website = (() => {
     const wind = document.createElement("div");
 
     function createWebsite(data) {
-        const time = calcTime(data.timezone);
-
         weatherTypeText.innerText = data.description;
         cityNameText.innerText = data.theCityName;
-        date.innerText = time;
+        highLow.innerText = `Low: ${data.low}, High: ${data.high}`;
         tempText.innerText = data.temperature + "˚F";
         typeOfUnits.innerText = "Type of Units: ˚F";
         typeOfUnits.style.fontSize = "10px";
@@ -87,7 +73,7 @@ export const website = (() => {
         content.appendChild(header);
         header.appendChild(weatherType);
         header.appendChild(cityName);
-        header.appendChild(date);
+        header.appendChild(highLow);
         header.appendChild(temp);
         header.appendChild(typeOfUnits);
         header.appendChild(weatherTypeImg);
@@ -142,11 +128,9 @@ export const website = (() => {
     }
     
     function modifyWebsite(data) {
-        const time = calcTime(data.timezone);
-
         weatherTypeText.innerText = data.description;
         cityNameText.innerText = data.theCityName;
-        date.innerText = time;
+        highLow.innerText = `Low: ${data.low}, High: ${data.high}`;
         tempText.innerText = data.temperature + "˚F";
         typeOfUnits.innerText = "Type of Units: ˚F";
         typeOfUnits.style.fontSize = "10px";
