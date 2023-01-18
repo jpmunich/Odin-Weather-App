@@ -1,7 +1,22 @@
-const div = document.createElement("div");
-div.innerHTML = "Hioefhs";
-document.body.appendChild(div);
+import { weatherData } from "./api_functions.js";
+import { website } from "./website.js";
 
-const img = document.createElement("img");
-img.src = "images/weather-app-background.jpg";
-document.body.appendChild(img);
+const submit = document.getElementById("submit")
+
+async function initialRun() {
+    const theWeatherData = await weatherData.getWeatherData("London");
+    website.createWebsite(theWeatherData);
+}
+
+function postInitialRun() {
+    document.addEventListener("submit", async (e) => { 
+        const search = document.getElementById("search-bar");
+        e.preventDefault();
+        const theWeatherData = await weatherData.getWeatherData(search.value);
+        website.modifyWebsite(theWeatherData);
+    })
+}
+
+
+initialRun();
+postInitialRun();
