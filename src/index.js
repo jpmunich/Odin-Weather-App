@@ -13,6 +13,7 @@ function postInitialRun() {
         const search = document.getElementById("search-bar");
         e.preventDefault();
         const theWeatherData = await weatherData.getWeatherData(search.value);
+        search.value = "";
         website.modifyWebsite(theWeatherData);
     })
 }

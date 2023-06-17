@@ -46,7 +46,7 @@ export const website = (() => {
     const wind = document.createElement("div");
 
     function createWebsite(data) {
-        weatherTypeText.innerText = data.description;
+        weatherTypeText.innerText = data.description
         cityNameText.innerText = data.theCityName;
         highLow.innerText = `Low: ${data.low}, High: ${data.high}`;
         tempText.innerText = data.temperature + "˚F";
